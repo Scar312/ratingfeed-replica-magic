@@ -23,29 +23,27 @@ const sortLabels: Record<SortOption, string> = {
 
 const SortDropdown = ({ value, onChange }: SortDropdownProps) => {
   return (
-    <div className="px-6 md:px-12 lg:px-24 mb-6">
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="gap-2">
-            <ArrowUpDown className="w-4 h-4" />
-            {sortLabels[value]}
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="start" className="w-48 bg-popover">
-          {(Object.keys(sortLabels) as SortOption[]).map((option) => (
-            <DropdownMenuItem
-              key={option}
-              onClick={() => onChange(option)}
-              className="gap-2"
-            >
-              {value === option && <Check className="w-4 h-4" />}
-              {value !== option && <span className="w-4" />}
-              {sortLabels[option]}
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" className="gap-2 h-10 rounded-lg text-sm">
+          <ArrowUpDown className="w-4 h-4" />
+          {sortLabels[value]}
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="start" className="w-48 bg-card border-border rounded-xl">
+        {(Object.keys(sortLabels) as SortOption[]).map((option) => (
+          <DropdownMenuItem
+            key={option}
+            onClick={() => onChange(option)}
+            className="gap-2 cursor-pointer"
+          >
+            {value === option && <Check className="w-4 h-4 text-primary" />}
+            {value !== option && <span className="w-4" />}
+            {sortLabels[option]}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 

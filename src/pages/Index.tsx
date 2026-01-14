@@ -2,54 +2,29 @@ import { useState, useMemo } from "react";
 import Header from "@/components/Header";
 import SearchBar from "@/components/SearchBar";
 import SortDropdown, { SortOption } from "@/components/SortDropdown";
-import OfferCard, { Offer } from "@/components/OfferCard";
+import OfferCard from "@/components/OfferCard";
 import CouponModal from "@/components/CouponModal";
 import Footer from "@/components/Footer";
-
-const offers: Offer[] = [
-  {
-    id: "amazon",
-    name: "Amazon",
-    description: "Mega Deals: Up To 90% Off Everything",
-    discount: "90%",
-    discountType: "percent",
-    used: 456,
-    remaining: 5,
-    logo: "amazon",
-    link: "https://glctrk.org/aff_c?offer_id=1153&aff_id=16139",
-  },
-  {
-    id: "shein",
-    name: "SHEIN",
-    description: "Fashion Frenzy: Up To 85% Off Trendy Styles & New Arrivals",
-    discount: "85%",
-    discountType: "percent",
-    used: 287,
-    remaining: 17,
-    logo: "SHEIN",
-    link: "https://glctrk.org/aff_c?offer_id=1304&aff_id=16139",
-  },
-  {
-    id: "tiktok",
-    name: "TikTok Shop",
-    description: "Viral Finds: Exclusive Discounts On Trending Products — Up To 80% Off",
-    discount: "80%",
-    discountType: "percent",
-    used: 210,
-    remaining: 18,
-    logo: "TikTok",
-    link: "https://glctrk.org/aff_c?offer_id=1259&aff_id=16139",
-  },
-];
+import { offers, type Offer } from "@/data/offers";
+import { useFavorites } from "@/hooks/useFavorites";
+import { Heart } from "lucide-react";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState<SortOption>("popular");
   const [selectedOffer, setSelectedOffer] = useState<Offer | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+  
+  const { favorites, toggleFavorite, isFavorite } = useFavorites();
 
   const filteredOffers = useMemo(() => {
     let result = [...offers];
+
+    // Filter by favorites if enabled
+    if (showFavoritesOnly) {
+      result = result.filter((offer) => favorites.includes(offer.id));
+    }
 
     // Filter by search query
     if (searchQuery.trim()) {
@@ -67,7 +42,6 @@ const Index = () => {
         result.sort((a, b) => b.used - a.used);
         break;
       case "newest":
-        // Keep original order for newest
         break;
       case "discount":
         result.sort((a, b) => {
@@ -82,7 +56,7 @@ const Index = () => {
     }
 
     return result;
-  }, [searchQuery, sortOption]);
+  }, [searchQuery, sortOption, showFavoritesOnly, favorites]);
 
   const handleGetCode = (offer: Offer) => {
     setSelectedOffer(offer);
@@ -96,19 +70,84 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Header />
+      <Header 
+        favoritesCount={favorites.length} 
+        showFavoritesOnly={showFavoritesOnly}
+        onToggleFavorites={() => setShowFavoritesOnly(!showFavoritesOnly)}
+      />
+      
+      <div className="px-6 md:px-12 lg:px-24 py-8">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+            {showFavoritesOnly ? "Your Favorite Deals" : "Today's Top Deals"}
+          </h2>
+          <p className="text-muted-foreground">
+            {showFavoritesOnly 
+              ? `${favorites.length} saved offer${favorites.length !== 1 ? 's' : ''}`
+              : "Verified coupons and exclusive discounts from top brands"
+            }
+          </p>
+        </div>
+      </div>
+      
       <SearchBar value={searchQuery} onChange={setSearchQuery} />
-      <SortDropdown value={sortOption} onChange={setSortOption} />
+      
+      <div className="px-6 md:px-12 lg:px-24 mb-6 flex items-center justify-between">
+        <SortDropdown value={sortOption} onChange={setSortOption} />
+        
+        <button
+          onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            showFavoritesOnly
+              ? "bg-red-50 text-red-600 border border-red-200"
+              : "bg-muted text-muted-foreground hover:bg-muted/80"
+          }`}
+        >
+          <Heart className={`w-4 h-4 ${showFavoritesOnly ? "fill-current" : ""}`} />
+          Favorites
+          {favorites.length > 0 && (
+            <span className={`px-1.5 py-0.5 rounded-full text-xs ${
+              showFavoritesOnly ? "bg-red-200" : "bg-background"
+            }`}>
+              {favorites.length}
+            </span>
+          )}
+        </button>
+      </div>
 
-      <main className="flex-1 px-6 md:px-12 lg:px-24">
+      <main className="flex-1 px-6 md:px-12 lg:px-24 pb-12">
         {filteredOffers.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">No offers found matching "{searchQuery}"</p>
+          <div className="text-center py-16">
+            {showFavoritesOnly ? (
+              <>
+                <Heart className="w-16 h-16 mx-auto text-muted-foreground/30 mb-4" />
+                <p className="text-muted-foreground text-lg mb-2">No favorites yet</p>
+                <p className="text-muted-foreground/70 text-sm">
+                  Click the heart icon on any offer to save it here
+                </p>
+                <button
+                  onClick={() => setShowFavoritesOnly(false)}
+                  className="mt-4 text-primary hover:underline text-sm font-medium"
+                >
+                  Browse all offers
+                </button>
+              </>
+            ) : (
+              <p className="text-muted-foreground text-lg">
+                No offers found matching "{searchQuery}"
+              </p>
+            )}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {filteredOffers.map((offer) => (
-              <OfferCard key={offer.id} offer={offer} onGetCode={handleGetCode} />
+              <OfferCard 
+                key={offer.id} 
+                offer={offer} 
+                isFavorite={isFavorite(offer.id)}
+                onToggleFavorite={toggleFavorite}
+                onGetCode={handleGetCode} 
+              />
             ))}
           </div>
         )}
