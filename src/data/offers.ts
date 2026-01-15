@@ -19,6 +19,7 @@ export interface Offer {
   logo: string;
   link: string;
   category?: string;
+  studentOnly?: boolean;
 }
 
 export const offers: Offer[] = [
@@ -33,6 +34,7 @@ export const offers: Offer[] = [
     logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
     link: "https://glctrk.org/aff_c?offer_id=1153&aff_id=16139",
     category: "shopping",
+    studentOnly: true,
   },
   {
     id: "shein",
@@ -45,6 +47,7 @@ export const offers: Offer[] = [
     logo: sheinLogo,
     link: "https://glctrk.org/aff_c?offer_id=1304&aff_id=16139",
     category: "fashion",
+    studentOnly: true,
   },
   {
     id: "tiktok",
@@ -69,6 +72,7 @@ export const offers: Offer[] = [
     logo: doordashLogo,
     link: "https://glctrk.org/aff_c?offer_id=1153&aff_id=16139",
     category: "food",
+    studentOnly: true,
   },
   {
     id: "ubereats",
@@ -105,12 +109,13 @@ export const offers: Offer[] = [
     logo: venmoLogo,
     link: "https://glctrk.org/aff_c?offer_id=1153&aff_id=16139",
     category: "finance",
+    studentOnly: true,
   },
   {
     id: "ticketmaster",
     name: "Ticketmaster",
-    description: "Live Events: Up To 50% Off Concerts, Sports & Theatre Tickets",
-    discount: "50%",
+    description: "Live Events: Up To 80% Off Concerts, Sports & Theatre Tickets",
+    discount: "80%",
     discountType: "percent",
     used: 687,
     remaining: 22,
@@ -141,6 +146,7 @@ export const offers: Offer[] = [
     logo: no7Logo,
     link: "https://glctrk.org/aff_c?offer_id=1153&aff_id=16139",
     category: "beauty",
+    studentOnly: true,
   },
   {
     id: "ebay",
@@ -177,6 +183,7 @@ export const offers: Offer[] = [
     logo: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Target_logo.svg",
     link: "https://glctrk.org/aff_c?offer_id=1153&aff_id=16139",
     category: "shopping",
+    studentOnly: true,
   },
   {
     id: "nike",
@@ -213,6 +220,7 @@ export const offers: Offer[] = [
     logo: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Best_Buy_Logo.svg",
     link: "https://glctrk.org/aff_c?offer_id=1153&aff_id=16139",
     category: "tech",
+    studentOnly: true,
   },
   {
     id: "sephora",
@@ -244,7 +252,7 @@ export const tasks = [
   {
     id: "shein",
     name: "SHEIN",
-    description: "Sign up and explore the latest fashion trends. Complete a quick registration to unlock exclusive member-only deals and early access to seasonal sales.",
+    description: "Sign up to unlock exclusive deals and early access to sales.",
     logo: sheinLogo,
     link: "https://glctrk.org/aff_c?offer_id=1304&aff_id=16139",
     rating: 4.5,
@@ -252,7 +260,7 @@ export const tasks = [
   {
     id: "tiktok",
     name: "TikTok Shop",
-    description: "Sign up and discover viral products loved by millions. Complete a quick browse to verify your eligibility and unlock your exclusive discount code.",
+    description: "Sign up and browse viral products to verify your eligibility.",
     logo: tiktokLogo,
     link: "https://glctrk.org/aff_c?offer_id=1259&aff_id=16139",
     rating: 4.3,
@@ -260,7 +268,7 @@ export const tasks = [
   {
     id: "amazon",
     name: "Amazon",
-    description: "Sign up and complete 3 simple tasks to qualify for a $500 Amazon Gift Card. Explore millions of products with fast Prime delivery.",
+    description: "Sign up and complete 3 simple tasks to qualify for a $500 Amazon Gift Card.",
     logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
     link: "https://glctrk.org/aff_c?offer_id=1153&aff_id=16139",
     rating: 4.8,

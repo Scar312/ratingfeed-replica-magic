@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Header from "@/components/Header";
 import SearchBar from "@/components/SearchBar";
 import SortDropdown, { SortOption } from "@/components/SortDropdown";
@@ -9,17 +9,33 @@ import { offers, type Offer } from "@/data/offers";
 import { useFavorites } from "@/hooks/useFavorites";
 import { Heart } from "lucide-react";
 
+// Fisher-Yates shuffle
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
+
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState<SortOption>("popular");
   const [selectedOffer, setSelectedOffer] = useState<Offer | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+  const [shuffledOffers, setShuffledOffers] = useState<Offer[]>([]);
   
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
 
+  // Shuffle offers on initial load
+  useEffect(() => {
+    setShuffledOffers(shuffleArray(offers));
+  }, []);
+
   const filteredOffers = useMemo(() => {
-    let result = [...offers];
+    let result = [...shuffledOffers];
 
     // Filter by favorites if enabled
     if (showFavoritesOnly) {
@@ -56,7 +72,7 @@ const Index = () => {
     }
 
     return result;
-  }, [searchQuery, sortOption, showFavoritesOnly, favorites]);
+  }, [searchQuery, sortOption, showFavoritesOnly, favorites, shuffledOffers]);
 
   const handleGetCode = (offer: Offer) => {
     setSelectedOffer(offer);

@@ -1,7 +1,27 @@
-import { Sparkles } from "lucide-react";
+import { Sparkles, Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    // Check initial theme
+    const isDarkMode = document.documentElement.classList.contains("dark");
+    setIsDark(isDarkMode);
+  }, []);
+
+  const toggleTheme = () => {
+    const newDark = !isDark;
+    setIsDark(newDark);
+    if (newDark) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  };
 
   return (
     <footer className="bg-muted/50 border-t border-border">
@@ -56,16 +76,32 @@ const Footer = () => {
           <p className="text-muted-foreground text-xs sm:text-sm">
             © {currentYear} Ratingfeed. All rights reserved.
           </p>
-          <div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm">
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-              Privacy
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-              Terms
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-              Cookies
-            </a>
+          
+          <div className="flex items-center gap-4 sm:gap-6">
+            {/* Theme toggle switch */}
+            <button
+              onClick={toggleTheme}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted border border-border hover:border-primary/30 transition-all"
+              aria-label="Toggle theme"
+            >
+              <Sun className={`w-4 h-4 transition-colors ${!isDark ? "text-amber-500" : "text-muted-foreground"}`} />
+              <div className={`relative w-10 h-5 rounded-full transition-colors ${isDark ? "bg-primary" : "bg-muted-foreground/30"}`}>
+                <div className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-transform ${isDark ? "translate-x-5" : "translate-x-0.5"}`} />
+              </div>
+              <Moon className={`w-4 h-4 transition-colors ${isDark ? "text-blue-400" : "text-muted-foreground"}`} />
+            </button>
+            
+            <div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                Privacy
+              </a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                Terms
+              </a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                Cookies
+              </a>
+            </div>
           </div>
         </div>
       </div>
