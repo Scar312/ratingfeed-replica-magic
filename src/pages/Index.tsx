@@ -76,12 +76,12 @@ const Index = () => {
         onToggleFavorites={() => setShowFavoritesOnly(!showFavoritesOnly)}
       />
       
-      <div className="px-6 md:px-12 lg:px-24 py-8">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+      <div className="px-4 sm:px-6 md:px-12 lg:px-24 py-6 sm:py-8">
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2">
             {showFavoritesOnly ? "Your Favorite Deals" : "Today's Top Deals"}
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-sm sm:text-base text-muted-foreground">
             {showFavoritesOnly 
               ? `${favorites.length} saved offer${favorites.length !== 1 ? 's' : ''}`
               : "Verified coupons and exclusive discounts from top brands"
@@ -92,22 +92,22 @@ const Index = () => {
       
       <SearchBar value={searchQuery} onChange={setSearchQuery} />
       
-      <div className="px-6 md:px-12 lg:px-24 mb-6 flex items-center justify-between">
+      <div className="px-4 sm:px-6 md:px-12 lg:px-24 mb-4 sm:mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
         <SortDropdown value={sortOption} onChange={setSortOption} />
         
         <button
           onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+          className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all ${
             showFavoritesOnly
-              ? "bg-red-50 text-red-600 border border-red-200"
+              ? "bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-900"
               : "bg-muted text-muted-foreground hover:bg-muted/80"
           }`}
         >
           <Heart className={`w-4 h-4 ${showFavoritesOnly ? "fill-current" : ""}`} />
           Favorites
           {favorites.length > 0 && (
-            <span className={`px-1.5 py-0.5 rounded-full text-xs ${
-              showFavoritesOnly ? "bg-red-200" : "bg-background"
+            <span className={`px-1.5 py-0.5 rounded-full text-[10px] sm:text-xs ${
+              showFavoritesOnly ? "bg-red-200 dark:bg-red-900" : "bg-background"
             }`}>
               {favorites.length}
             </span>
@@ -115,31 +115,31 @@ const Index = () => {
         </button>
       </div>
 
-      <main className="flex-1 px-6 md:px-12 lg:px-24 pb-12">
+      <main className="flex-1 px-4 sm:px-6 md:px-12 lg:px-24 pb-8 sm:pb-12">
         {filteredOffers.length === 0 ? (
-          <div className="text-center py-16">
+          <div className="text-center py-12 sm:py-16">
             {showFavoritesOnly ? (
               <>
-                <Heart className="w-16 h-16 mx-auto text-muted-foreground/30 mb-4" />
-                <p className="text-muted-foreground text-lg mb-2">No favorites yet</p>
-                <p className="text-muted-foreground/70 text-sm">
+                <Heart className="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-muted-foreground/30 mb-4" />
+                <p className="text-muted-foreground text-base sm:text-lg mb-2">No favorites yet</p>
+                <p className="text-muted-foreground/70 text-xs sm:text-sm">
                   Click the heart icon on any offer to save it here
                 </p>
                 <button
                   onClick={() => setShowFavoritesOnly(false)}
-                  className="mt-4 text-primary hover:underline text-sm font-medium"
+                  className="mt-4 text-primary hover:underline text-xs sm:text-sm font-medium"
                 >
                   Browse all offers
                 </button>
               </>
             ) : (
-              <p className="text-muted-foreground text-lg">
+              <p className="text-muted-foreground text-base sm:text-lg">
                 No offers found matching "{searchQuery}"
               </p>
             )}
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
             {filteredOffers.map((offer) => (
               <OfferCard 
                 key={offer.id} 
