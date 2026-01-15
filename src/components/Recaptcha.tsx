@@ -1,5 +1,4 @@
-import { useState, useCallback } from "react";
-import { Check } from "lucide-react";
+import { useState, useCallback, useEffect } from "react";
 
 interface RecaptchaProps {
   onVerify: () => void;
@@ -7,46 +6,69 @@ interface RecaptchaProps {
 
 const Recaptcha = ({ onVerify }: RecaptchaProps) => {
   const [isChecking, setIsChecking] = useState(false);
-  const [isVerified, setIsVerified] = useState(false);
+  const [showCode, setShowCode] = useState(true);
+  const [randomCode, setRandomCode] = useState("");
+
+  // Generate random code on mount
+  useEffect(() => {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    let code = "";
+    for (let i = 0; i < 8; i++) {
+      code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    setRandomCode(code);
+    
+    // Hide code and show captcha after brief delay
+    const timer = setTimeout(() => {
+      setShowCode(false);
+    }, 800);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleCheck = useCallback(() => {
-    if (isVerified || isChecking) return;
+    if (isChecking) return;
     
     setIsChecking(true);
     
-    // Simulate verification delay
+    // Simulate verification delay then proceed
     setTimeout(() => {
-      setIsChecking(false);
-      setIsVerified(true);
-      setTimeout(() => {
-        onVerify();
-      }, 400);
-    }, 1500);
-  }, [isVerified, isChecking, onVerify]);
+      onVerify();
+    }, 1200);
+  }, [isChecking, onVerify]);
+
+  // Show random code first
+  if (showCode) {
+    return (
+      <div className="bg-[#f9f9f9] dark:bg-[#1a1a1a] border border-[#d3d3d3] dark:border-[#444] rounded-[3px] shadow-sm p-4 min-w-[300px]">
+        <div className="text-center">
+          <p className="text-xs text-muted-foreground mb-2">Your code:</p>
+          <div className="font-mono text-2xl font-bold tracking-widest text-foreground bg-muted/50 rounded px-4 py-3 border border-border">
+            {randomCode}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="bg-[#f9f9f9] dark:bg-[#222] border border-[#d3d3d3] dark:border-[#444] rounded-[3px] shadow-[0_0_4px_1px_rgba(0,0,0,0.08)] inline-flex items-stretch min-h-[78px]">
+    <div className="bg-[#f9f9f9] dark:bg-[#1a1a1a] border border-[#d3d3d3] dark:border-[#444] rounded-[3px] shadow-sm inline-flex items-stretch min-h-[74px] animate-in fade-in duration-300">
       {/* Left side - Checkbox area */}
-      <div className="flex items-center px-4 py-2">
+      <div className="flex items-center px-3 sm:px-4 py-2">
         <button
           onClick={handleCheck}
-          disabled={isVerified || isChecking}
+          disabled={isChecking}
           className="flex items-center gap-3 cursor-pointer disabled:cursor-default group"
         >
           <div 
-            className={`w-[28px] h-[28px] border-2 rounded-sm flex items-center justify-center transition-all duration-200 ${
-              isVerified 
-                ? "bg-[#00a652] border-[#00a652]" 
-                : isChecking 
-                  ? "border-[#c1c1c1] dark:border-[#666]" 
-                  : "border-[#c1c1c1] dark:border-[#666] group-hover:border-[#a0a0a0] dark:group-hover:border-[#888] bg-white dark:bg-[#333]"
+            className={`w-[24px] h-[24px] border-2 rounded-sm flex items-center justify-center transition-all duration-200 ${
+              isChecking 
+                ? "border-[#c1c1c1] dark:border-[#555]" 
+                : "border-[#c1c1c1] dark:border-[#555] group-hover:border-[#4285f4] bg-white dark:bg-[#2a2a2a]"
             }`}
           >
-            {isVerified && (
-              <Check className="w-5 h-5 text-white animate-in zoom-in duration-150" strokeWidth={3} />
-            )}
             {isChecking && (
-              <div className="w-5 h-5 relative">
+              <div className="w-4 h-4 relative">
                 <svg className="animate-spin" viewBox="0 0 24 24">
                   <circle 
                     className="opacity-25" 
@@ -69,7 +91,7 @@ const Recaptcha = ({ onVerify }: RecaptchaProps) => {
               </div>
             )}
           </div>
-          <span className="text-[14px] text-[#555] dark:text-[#ccc] select-none font-normal">
+          <span className="text-[13px] text-[#202124] dark:text-[#e8eaed] select-none font-normal">
             I'm not a robot
           </span>
         </button>
@@ -79,14 +101,15 @@ const Recaptcha = ({ onVerify }: RecaptchaProps) => {
       <div className="w-px bg-[#d3d3d3] dark:bg-[#444] my-2" />
       
       {/* Right side - reCAPTCHA branding */}
-      <div className="flex flex-col items-center justify-center px-3 py-2 min-w-[70px]">
-        <svg width="32" height="32" viewBox="0 0 64 64">
-          <path fill="#1c3aa9" d="M32 2L2 32l30 30 30-30L32 2zm0 45L19 34l13-13 13 13-13 13z"/>
-          <path fill="#4285f4" d="M32 15L19 28l13 13 13-13-13-13zm0 19l-6-6 6-6 6 6-6 6z"/>
-          <path fill="#ababab" d="M32 28l-6 6 6 6 6-6-6-6z"/>
+      <div className="flex flex-col items-center justify-center px-2 sm:px-3 py-1.5 min-w-[60px]">
+        <svg width="28" height="28" viewBox="0 0 64 64">
+          {/* Blue arrow part */}
+          <path fill="#4285f4" d="M32 12L52 32L32 52L32 40L40 32L32 24L32 12Z"/>
+          {/* Gray arrow part */}
+          <path fill="#9aa0a6" d="M32 12L12 32L32 52L32 40L24 32L32 24L32 12Z"/>
         </svg>
-        <span className="text-[10px] text-[#555] dark:text-[#aaa] font-medium mt-0.5">reCAPTCHA</span>
-        <div className="flex items-center gap-1 text-[8px] text-[#888] dark:text-[#666]">
+        <span className="text-[9px] text-[#555] dark:text-[#9aa0a6] font-medium tracking-tight">reCAPTCHA</span>
+        <div className="flex items-center gap-1 text-[7px] text-[#70757a] dark:text-[#666]">
           <a href="#" className="hover:underline">Privacy</a>
           <span>-</span>
           <a href="#" className="hover:underline">Terms</a>

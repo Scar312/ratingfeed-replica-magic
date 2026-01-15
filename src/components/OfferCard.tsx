@@ -12,12 +12,13 @@ interface OfferCardProps {
 const OfferCard = ({ offer, isFavorite, onToggleFavorite, onGetCode }: OfferCardProps) => {
   return (
     <div className="relative bg-card border border-border rounded-2xl p-4 sm:p-5 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 hover:border-primary/20 group">
+      {/* Favorite button - top left */}
       <button
         onClick={(e) => {
           e.stopPropagation();
           onToggleFavorite(offer.id);
         }}
-        className={`absolute top-3 sm:top-4 left-3 sm:left-4 p-1.5 rounded-full transition-all duration-200 ${
+        className={`absolute top-3 sm:top-4 left-3 sm:left-4 p-1.5 rounded-full transition-all duration-200 z-10 ${
           isFavorite 
             ? "text-red-500 bg-red-50 dark:bg-red-950/50 hover:bg-red-100 dark:hover:bg-red-950" 
             : "text-muted-foreground hover:text-red-400 hover:bg-muted"
@@ -26,13 +27,22 @@ const OfferCard = ({ offer, isFavorite, onToggleFavorite, onGetCode }: OfferCard
       >
         <Heart className={`w-4 h-4 ${isFavorite ? "fill-current" : ""}`} />
       </button>
+
+      {/* Student Only Badge - top right */}
+      {offer.studentOnly && (
+        <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-10">
+          <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded-full shadow-lg">
+            STUDENT ONLY
+          </span>
+        </div>
+      )}
       
       <div className="flex items-start gap-3 sm:gap-4 mt-6">
-        <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white dark:bg-muted rounded-xl flex items-center justify-center overflow-hidden shrink-0 border border-border/50 p-2 group-hover:border-primary/20 transition-colors">
+        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white dark:bg-muted rounded-xl flex items-center justify-center overflow-hidden shrink-0 border border-border/50 group-hover:border-primary/20 transition-colors">
           <img 
             src={offer.logo} 
             alt={`${offer.name} logo`}
-            className="w-full h-full object-contain"
+            className="w-full h-full object-cover"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.style.display = 'none';

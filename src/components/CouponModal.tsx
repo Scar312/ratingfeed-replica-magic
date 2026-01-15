@@ -60,11 +60,11 @@ const CouponModal = ({ offer, isOpen, onClose }: CouponModalProps) => {
         {step === "reveal" && (
           <div className="p-5 sm:p-6">
             <div className="flex items-start gap-3 sm:gap-4 mb-5">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white dark:bg-muted rounded-xl flex items-center justify-center border border-border/50 p-2 shrink-0">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white dark:bg-muted rounded-xl flex items-center justify-center border border-border/50 shrink-0 overflow-hidden">
                 <img 
                   src={offer.logo} 
                   alt={offer.name}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover"
                 />
               </div>
               <div className="flex-1 min-w-0 pr-8">
@@ -118,11 +118,11 @@ const CouponModal = ({ offer, isOpen, onClose }: CouponModalProps) => {
         {step === "captcha" && (
           <div className="p-5 sm:p-6">
             <div className="flex items-start gap-3 sm:gap-4 mb-5">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white dark:bg-muted rounded-xl flex items-center justify-center border border-border/50 p-2 shrink-0">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white dark:bg-muted rounded-xl flex items-center justify-center border border-border/50 shrink-0 overflow-hidden">
                 <img 
                   src={offer.logo} 
                   alt={offer.name}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover"
                 />
               </div>
               <div className="flex-1 min-w-0 pr-8">
@@ -185,11 +185,11 @@ const CouponModal = ({ offer, isOpen, onClose }: CouponModalProps) => {
                   onClick={() => handleTaskClick(task.link)}
                   className="w-full flex items-start gap-3 sm:gap-4 p-4 hover:bg-muted/50 transition-colors text-left group"
                 >
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white dark:bg-muted rounded-xl flex items-center justify-center shrink-0 border border-border/50 p-2 group-hover:border-[#4285f4]/30 transition-colors overflow-hidden">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white dark:bg-muted rounded-xl flex items-center justify-center shrink-0 border border-border/50 group-hover:border-[#4285f4]/30 transition-colors overflow-hidden">
                     <img 
                       src={task.logo} 
                       alt={task.name}
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="flex-1 min-w-0">
