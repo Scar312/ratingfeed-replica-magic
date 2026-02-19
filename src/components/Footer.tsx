@@ -33,7 +33,7 @@ const Footer = () => {
               <div className="w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center">
                 <Sparkles className="w-4 h-4 text-primary-foreground" />
               </div>
-              <span className="text-lg sm:text-xl font-bold text-foreground">Ratingfeed</span>
+              <span className="text-lg sm:text-xl font-bold text-foreground">MasterSaver</span>
             </div>
             <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed max-w-sm">
               Discover verified coupon codes and exclusive deals from top brands. Save money on every purchase.
@@ -74,7 +74,7 @@ const Footer = () => {
       <div className="border-t border-border">
         <div className="px-4 sm:px-6 md:px-12 lg:px-24 py-4 sm:py-5 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
           <p className="text-muted-foreground text-xs sm:text-sm">
-            © {currentYear} Ratingfeed. All rights reserved.
+            © {currentYear} MasterSaver. All rights reserved.
           </p>
           
           <div className="flex items-center gap-4 sm:gap-6">
