@@ -14,7 +14,7 @@ const Header = ({ favoritesCount, showFavoritesOnly, onToggleFavorites }: Header
           <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
         </div>
         <div>
-          <h1 className="text-lg sm:text-xl font-bold text-foreground tracking-tight">Ratingfeed</h1>
+          <h1 className="text-lg sm:text-xl font-bold text-foreground tracking-tight">MasterSaver</h1>
           <p className="text-[10px] sm:text-xs text-muted-foreground hidden sm:block">Save More, Spend Less</p>
         </div>
       </div>
