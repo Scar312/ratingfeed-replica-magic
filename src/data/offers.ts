@@ -23,6 +23,8 @@ import asosLogo from "@/assets/asos.jpg";
 import aldiLogo from "@/assets/aldi.png";
 import ultaLogo from "@/assets/ulta.webp";
 import amazonLogo from "@/assets/amazon.png";
+import aerieLogo from "@/assets/aerie.png";
+import abercrrombieLogo from "@/assets/abercrombie.png";
 import sheinTaskIcon from "@/assets/shein-task-icon.webp";
 import playfulRewardsIcon from "@/assets/playful-rewards-icon.webp";
 import amazonIconNew from "@/assets/amazon-icon-new.png";
