@@ -19,6 +19,31 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return shuffled;
 };
 
+const FOUR_HOURS_MS = 4 * 60 * 60 * 1000;
+
+const getStableUsedCounts = (): Record<string, { used: number; remaining: number }> => {
+  const storageKey = "mastersaver_used_counts";
+  const stored = localStorage.getItem(storageKey);
+  if (stored) {
+    try {
+      const parsed = JSON.parse(stored);
+      if (Date.now() - parsed.timestamp < FOUR_HOURS_MS) {
+        return parsed.counts;
+      }
+    } catch {}
+  }
+  // Generate new counts
+  const counts: Record<string, { used: number; remaining: number }> = {};
+  offers.forEach((offer) => {
+    counts[offer.id] = {
+      used: offer.used + Math.floor(Math.random() * 200),
+      remaining: Math.max(5, offer.remaining - Math.floor(Math.random() * 10)),
+    };
+  });
+  localStorage.setItem(storageKey, JSON.stringify({ timestamp: Date.now(), counts }));
+  return counts;
+};
+
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState<SortOption>("popular");
@@ -29,9 +54,15 @@ const Index = () => {
   
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
 
-  // Shuffle offers on initial load
+  // Shuffle offers on initial load and apply stable used counts
   useEffect(() => {
-    setShuffledOffers(shuffleArray(offers));
+    const counts = getStableUsedCounts();
+    const withCounts = offers.map((offer) => ({
+      ...offer,
+      used: counts[offer.id]?.used ?? offer.used,
+      remaining: counts[offer.id]?.remaining ?? offer.remaining,
+    }));
+    setShuffledOffers(shuffleArray(withCounts));
   }, []);
 
   const filteredOffers = useMemo(() => {

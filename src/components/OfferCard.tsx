@@ -38,7 +38,7 @@ const OfferCard = ({ offer, isFavorite, onToggleFavorite, onGetCode }: OfferCard
       )}
       
       <div className="flex items-start gap-3 sm:gap-4 mt-6">
-        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white dark:bg-muted rounded-xl flex items-center justify-center overflow-hidden shrink-0 border border-border/50 group-hover:border-primary/20 transition-colors">
+        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white dark:bg-muted rounded-xl flex items-center justify-center overflow-hidden shrink-0">
           <img 
             src={offer.logo} 
             alt={`${offer.name} logo`}

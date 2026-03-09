@@ -23,6 +23,8 @@ import asosLogo from "@/assets/asos.jpg";
 import aldiLogo from "@/assets/aldi.png";
 import ultaLogo from "@/assets/ulta.webp";
 import amazonLogo from "@/assets/amazon.png";
+import aerieLogo from "@/assets/aerie.png";
+import abercrrombieLogo from "@/assets/abercrombie.png";
 import sheinTaskIcon from "@/assets/shein-task-icon.webp";
 import playfulRewardsIcon from "@/assets/playful-rewards-icon.webp";
 import amazonIconNew from "@/assets/amazon-icon-new.png";
@@ -351,6 +353,31 @@ export const offers: Offer[] = [
     logo: ultaLogo,
     link: "https://glctrk.org/aff_c?offer_id=1153&aff_id=16139",
     category: "beauty",
+  },
+  {
+    id: "aerie",
+    name: "Aerie",
+    description: "Feel-Good Fashion: Cozy Styles & Loungewear At Unbeatable Discounts",
+    discount: "55%",
+    discountType: "percent",
+    used: 198,
+    remaining: 44,
+    logo: aerieLogo,
+    link: "https://glctrk.org/aff_c?offer_id=1153&aff_id=16139",
+    category: "fashion",
+  },
+  {
+    id: "abercrombie",
+    name: "Abercrombie & Fitch",
+    description: "Classic American Style: Premium Fashion Essentials At Massive Savings",
+    discount: "60%",
+    discountType: "percent",
+    used: 167,
+    remaining: 48,
+    logo: abercrrombieLogo,
+    link: "https://glctrk.org/aff_c?offer_id=1153&aff_id=16139",
+    category: "fashion",
+    studentOnly: true,
   },
 ];
 
