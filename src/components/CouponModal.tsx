@@ -32,6 +32,9 @@ const CouponModal = ({ offer, isOpen, onClose }: CouponModalProps) => {
   const handleRevealClick = () => {
     setUsedToday(prev => prev + 1);
     setRemaining(prev => Math.max(0, prev - 1));
+    if (offer?.revealLink) {
+      window.open(offer.revealLink, "_blank");
+    }
     setStep("loading");
     setTimeout(() => {
       setStep("captcha");
