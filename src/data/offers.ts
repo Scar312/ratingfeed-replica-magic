@@ -41,6 +41,7 @@ export interface Offer {
   link: string;
   category?: string;
   studentOnly?: boolean;
+  directLink?: boolean;
 }
 
 export const offers: Offer[] = [
@@ -217,8 +218,9 @@ export const offers: Offer[] = [
     used: 298,
     remaining: 26,
     logo: appleLogo,
-    link: "https://glctrk.org/aff_c?offer_id=1153&aff_id=16139",
+    link: "https://linkthem.net/aff_c?offer_id=1701&aff_id=16139",
     category: "tech",
+    directLink: true,
   },
   {
     id: "netflix",
