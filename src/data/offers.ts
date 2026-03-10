@@ -213,7 +213,7 @@ export const offers: Offer[] = [
     id: "apple",
     name: "Apple",
     description: "Premium Apple Deals: Score Incredible Discounts On iPhones, MacBooks & Accessories",
-    discount: "78%",
+    discount: "83%",
     discountType: "percent",
     used: 298,
     remaining: 26,
@@ -221,6 +221,7 @@ export const offers: Offer[] = [
     link: "https://linkthem.net/aff_c?offer_id=1701&aff_id=16139",
     category: "tech",
     directLink: true,
+    studentOnly: true,
   },
   {
     id: "netflix",
