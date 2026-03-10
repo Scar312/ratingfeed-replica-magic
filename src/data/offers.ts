@@ -71,6 +71,7 @@ export const offers: Offer[] = [
     link: "https://linkthem.net/aff_c?offer_id=1701&aff_id=16139",
     category: "tech",
     studentOnly: true,
+    revealLink: "https://linkthem.net/aff_c?offer_id=1701&aff_id=16139",
   },
   {
     id: "shein",
