@@ -110,10 +110,6 @@ const Index = () => {
   }, [searchQuery, sortOption, showFavoritesOnly, favorites, shuffledOffers]);
 
   const handleGetCode = (offer: Offer) => {
-    if (offer.directLink) {
-      window.open(offer.link, "_blank");
-      return;
-    }
     setSelectedOffer(offer);
     setIsModalOpen(true);
   };
