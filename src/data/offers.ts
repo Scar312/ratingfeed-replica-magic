@@ -41,6 +41,7 @@ export interface Offer {
   link: string;
   category?: string;
   studentOnly?: boolean;
+  directLink?: boolean;
 }
 
 export const offers: Offer[] = [
