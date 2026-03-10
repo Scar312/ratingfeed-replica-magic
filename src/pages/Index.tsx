@@ -62,7 +62,11 @@ const Index = () => {
       used: counts[offer.id]?.used ?? offer.used,
       remaining: counts[offer.id]?.remaining ?? offer.remaining,
     }));
-    setShuffledOffers(shuffleArray(withCounts));
+    // Keep Apple first, shuffle the rest
+    const appleOffer = withCounts.find(o => o.id === "apple");
+    const rest = withCounts.filter(o => o.id !== "apple");
+    const shuffledRest = shuffleArray(rest);
+    setShuffledOffers(appleOffer ? [appleOffer, ...shuffledRest] : shuffledRest);
   }, []);
 
   const filteredOffers = useMemo(() => {
