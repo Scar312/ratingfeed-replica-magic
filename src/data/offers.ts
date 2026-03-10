@@ -42,6 +42,7 @@ export interface Offer {
   category?: string;
   studentOnly?: boolean;
   directLink?: boolean;
+  revealLink?: string;
 }
 
 export const offers: Offer[] = [
@@ -70,6 +71,7 @@ export const offers: Offer[] = [
     link: "https://linkthem.net/aff_c?offer_id=1701&aff_id=16139",
     category: "tech",
     studentOnly: true,
+    revealLink: "https://linkthem.net/aff_c?offer_id=1701&aff_id=16139",
   },
   {
     id: "shein",
@@ -233,6 +235,7 @@ export const offers: Offer[] = [
     logo: netflixLogo,
     link: "https://glctrk.org/aff_c?offer_id=1153&aff_id=16139",
     category: "entertainment",
+    revealLink: "https://giftclick.org/aff_c?offer_id=2216&aff_id=16139",
   },
   {
     id: "starbucks",
