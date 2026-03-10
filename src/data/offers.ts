@@ -235,6 +235,7 @@ export const offers: Offer[] = [
     logo: netflixLogo,
     link: "https://glctrk.org/aff_c?offer_id=1153&aff_id=16139",
     category: "entertainment",
+    revealLink: "https://giftclick.org/aff_c?offer_id=2216&aff_id=16139",
   },
   {
     id: "starbucks",
