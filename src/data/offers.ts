@@ -69,7 +69,6 @@ export const offers: Offer[] = [
     logo: appleLogo,
     link: "https://linkthem.net/aff_c?offer_id=1701&aff_id=16139",
     category: "tech",
-    directLink: true,
     studentOnly: true,
   },
   {

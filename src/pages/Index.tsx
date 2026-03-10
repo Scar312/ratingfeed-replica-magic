@@ -62,7 +62,11 @@ const Index = () => {
       used: counts[offer.id]?.used ?? offer.used,
       remaining: counts[offer.id]?.remaining ?? offer.remaining,
     }));
-    setShuffledOffers(shuffleArray(withCounts));
+    // Keep Apple first, shuffle the rest
+    const appleOffer = withCounts.find(o => o.id === "apple");
+    const rest = withCounts.filter(o => o.id !== "apple");
+    const shuffledRest = shuffleArray(rest);
+    setShuffledOffers(appleOffer ? [appleOffer, ...shuffledRest] : shuffledRest);
   }, []);
 
   const filteredOffers = useMemo(() => {
@@ -106,10 +110,6 @@ const Index = () => {
   }, [searchQuery, sortOption, showFavoritesOnly, favorites, shuffledOffers]);
 
   const handleGetCode = (offer: Offer) => {
-    if (offer.directLink) {
-      window.open(offer.link, "_blank");
-      return;
-    }
     setSelectedOffer(offer);
     setIsModalOpen(true);
   };

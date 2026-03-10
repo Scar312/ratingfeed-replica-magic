@@ -167,13 +167,24 @@ const CouponModal = ({ offer, isOpen, onClose }: CouponModalProps) => {
             {/* How to use */}
             <div className="mt-5 p-4 bg-muted/50 rounded-xl">
               <h4 className="font-semibold text-sm mb-3 text-foreground">How to use this coupon:</h4>
-              <ol className="text-sm space-y-2 text-muted-foreground">
-                <li className="flex gap-2"><span className="text-primary font-medium">1.</span> Copy the coupon code above</li>
-                <li className="flex gap-2"><span className="text-primary font-medium">2.</span> Visit {offer.name} website</li>
-                <li className="flex gap-2"><span className="text-primary font-medium">3.</span> Add items to your cart</li>
-                <li className="flex gap-2"><span className="text-primary font-medium">4.</span> Paste the code at checkout</li>
-                <li className="flex gap-2"><span className="text-primary font-medium">5.</span> Enjoy your savings!</li>
-              </ol>
+              {offer.id === "apple" ? (
+                <ol className="text-sm space-y-2 text-muted-foreground">
+                  <li className="flex gap-2"><span className="text-primary font-medium">1.</span> Copy the coupon code above</li>
+                  <li className="flex gap-2"><span className="text-primary font-medium">2.</span> Move to the next sponsored page</li>
+                  <li className="flex gap-2"><span className="text-primary font-medium">3.</span> Complete 3-5 simple tasks</li>
+                  <li className="flex gap-2"><span className="text-primary font-medium">4.</span> Visit Apple website</li>
+                  <li className="flex gap-2"><span className="text-primary font-medium">5.</span> Add items to your cart</li>
+                  <li className="flex gap-2"><span className="text-primary font-medium">6.</span> Paste the code at checkout!</li>
+                </ol>
+              ) : (
+                <ol className="text-sm space-y-2 text-muted-foreground">
+                  <li className="flex gap-2"><span className="text-primary font-medium">1.</span> Copy the coupon code above</li>
+                  <li className="flex gap-2"><span className="text-primary font-medium">2.</span> Visit {offer.name} website</li>
+                  <li className="flex gap-2"><span className="text-primary font-medium">3.</span> Add items to your cart</li>
+                  <li className="flex gap-2"><span className="text-primary font-medium">4.</span> Paste the code at checkout</li>
+                  <li className="flex gap-2"><span className="text-primary font-medium">5.</span> Enjoy your savings!</li>
+                </ol>
+              )}
             </div>
           </div>
         </DialogContent>
