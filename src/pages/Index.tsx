@@ -63,7 +63,7 @@ const Index = () => {
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/80 to-transparent" />
         <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex items-center gap-2 bg-white/90 rounded-md px-2 py-1">
           <img
-            src={brandLogo}
+            src={brandLogo.url}
             alt="Uber Eats logo"
             className="w-8 h-8 sm:w-10 sm:h-10"
             width={40}
@@ -73,7 +73,7 @@ const Index = () => {
         <div className="absolute inset-x-0 top-0 bottom-20 flex items-center justify-center">
           <div className="bg-white/95 rounded-2xl px-6 py-4 shadow-xl">
             <img
-              src={brandLogo}
+              src={brandLogo.url}
               alt="Uber Eats"
               className="w-24 h-24 sm:w-28 sm:h-28"
               width={112}
@@ -158,7 +158,7 @@ const Index = () => {
         <div className="mt-12 pb-8 flex flex-col items-center gap-1">
           <div className="flex items-center gap-2">
             <img
-              src={brandLogo}
+              src={brandLogo.url}
               alt="Uber Eats"
               className="w-8 h-8"
               width={32}
