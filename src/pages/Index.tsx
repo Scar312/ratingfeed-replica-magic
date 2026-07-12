@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { CheckCircle, ChevronDown } from "lucide-react";
-import warehouseHero from "@/assets/warehouse-hero.jpg";
-import costcoLogo from "@/assets/costco-logo.png";
+import heroImg from "@/assets/ubereats-hero.jpg";
+import brandLogo from "@/assets/ubereats-logo.png";
 
 const APPLY_URL = "https://giftclick.org/aff_c?offer_id=1402&aff_id=16139";
 
 const faqs = [
   {
     q: "Do I need to provide bank details?",
-    a: "No, you do not need to provide any bank details to claim your member reward.",
+    a: "No, you do not need to provide any bank details to claim your Uber Eats reward.",
   },
   {
     q: "How long do the deals take?",
@@ -30,7 +30,7 @@ const Index = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
-    document.title = "Claim Your Costco Member Reward";
+    document.title = "Claim Your Uber Eats Reward";
     const setMeta = (name: string, content: string, prop = false) => {
       const attr = prop ? "property" : "name";
       let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null;
@@ -43,50 +43,49 @@ const Index = () => {
     };
     setMeta(
       "description",
-      "Costco member reward — complete a quick questionnaire and a few easy tasks to claim your reward. Available in US, UK, AU & CA."
+      "Uber Eats reward — complete a quick questionnaire and a few easy tasks to claim your reward. Available in US, UK, AU & CA."
     );
-    setMeta("og:title", "Claim Your Costco Member Reward", true);
-    setMeta("og:description", "Quick member reward — takes about 5–10 minutes.", true);
+    setMeta("og:title", "Claim Your Uber Eats Reward", true);
+    setMeta("og:description", "Quick Uber Eats reward — takes about 5–10 minutes.", true);
   }, []);
 
   return (
     <div className="min-h-screen bg-background">
       <div className="relative w-full h-64 sm:h-80 md:h-96">
         <img
-          src={warehouseHero}
-          alt="Costco warehouse"
+          src={heroImg}
+          alt="Uber Eats delivery food spread"
           className="w-full h-full object-cover"
           width={1280}
           height={640}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 via-transparent to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/80 to-transparent" />
-        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex items-center gap-2">
+        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex items-center gap-2 bg-white/90 rounded-md px-2 py-1">
           <img
-            src={costcoLogo}
-            alt="Costco logo"
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded"
+            src={brandLogo}
+            alt="Uber Eats logo"
+            className="w-8 h-8 sm:w-10 sm:h-10"
             width={40}
             height={40}
           />
-          <span className="text-white font-bold text-base sm:text-lg drop-shadow-md">
-            Costco
-          </span>
         </div>
         <div className="absolute inset-x-0 top-0 bottom-20 flex items-center justify-center">
-          <img
-            src={costcoLogo}
-            alt="Costco"
-            className="w-20 h-20 sm:w-24 sm:h-24 drop-shadow-lg"
-            width={96}
-            height={96}
-          />
+          <div className="bg-white/95 rounded-2xl px-6 py-4 shadow-xl">
+            <img
+              src={brandLogo}
+              alt="Uber Eats"
+              className="w-24 h-24 sm:w-28 sm:h-28"
+              width={112}
+              height={112}
+            />
+          </div>
         </div>
       </div>
 
       <div className="max-w-lg mx-auto px-4 sm:px-5 -mt-8 sm:-mt-4 pb-8 text-center relative z-10">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground leading-tight">
-          Claim Your Costco Member Reward
+          Claim Your Uber Eats Reward
         </h1>
         <p className="text-muted-foreground mt-2 text-sm sm:text-base">
           Available in US, UK, AU &amp; CA
@@ -159,16 +158,16 @@ const Index = () => {
         <div className="mt-12 pb-8 flex flex-col items-center gap-1">
           <div className="flex items-center gap-2">
             <img
-              src={costcoLogo}
-              alt="Costco"
+              src={brandLogo}
+              alt="Uber Eats"
               className="w-8 h-8"
               width={32}
               height={32}
               loading="lazy"
             />
-            <span className="font-bold text-foreground">Costco</span>
+            <span className="font-bold text-foreground">Uber Eats</span>
           </div>
-          <p className="text-muted-foreground text-sm">Powered by Costco</p>
+          <p className="text-muted-foreground text-sm">Powered by Uber Eats</p>
         </div>
       </div>
     </div>
