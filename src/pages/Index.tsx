@@ -61,15 +61,6 @@ const Index = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 via-transparent to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/80 to-transparent" />
-        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex items-center gap-2">
-          <img
-            src={brandLogo.url}
-            alt="Uber Eats logo"
-            className="w-10 h-10 sm:w-12 sm:h-12"
-            width={48}
-            height={48}
-          />
-        </div>
         <div className="absolute inset-x-0 top-0 bottom-20 flex items-center justify-center">
           <img
             src={brandLogo.url}
