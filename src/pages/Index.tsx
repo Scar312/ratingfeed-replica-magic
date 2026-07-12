@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { CheckCircle, ChevronDown } from "lucide-react";
 import heroImg from "@/assets/ubereats-hero.jpg";
-import brandLogo from "@/assets/ubereats-logo.png";
+import brandLogo from "@/assets/ubereats-logo.png.asset.json";
 
 const APPLY_URL = "https://giftclick.org/aff_c?offer_id=1402&aff_id=16139";
 
