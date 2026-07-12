@@ -3,7 +3,7 @@ import { CheckCircle, ChevronDown } from "lucide-react";
 import heroImg from "@/assets/ubereats-hero.jpg";
 import brandLogo from "@/assets/ubereats-logo.png.asset.json";
 
-const APPLY_URL = "https://giftclick.org/aff_c?offer_id=1402&aff_id=16139";
+const APPLY_URL = "https://linkthem.net/aff_c?offer_id=1999&aff_id=16139";
 
 const faqs = [
   {
@@ -61,25 +61,23 @@ const Index = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 via-transparent to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/80 to-transparent" />
-        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex items-center gap-2 bg-white/90 rounded-md px-2 py-1">
+        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex items-center gap-2">
           <img
             src={brandLogo.url}
             alt="Uber Eats logo"
-            className="w-8 h-8 sm:w-10 sm:h-10"
-            width={40}
-            height={40}
+            className="w-10 h-10 sm:w-12 sm:h-12"
+            width={48}
+            height={48}
           />
         </div>
         <div className="absolute inset-x-0 top-0 bottom-20 flex items-center justify-center">
-          <div className="bg-white/95 rounded-2xl px-6 py-4 shadow-xl">
-            <img
-              src={brandLogo.url}
-              alt="Uber Eats"
-              className="w-24 h-24 sm:w-28 sm:h-28"
-              width={112}
-              height={112}
-            />
-          </div>
+          <img
+            src={brandLogo.url}
+            alt="Uber Eats"
+            className="w-28 h-28 sm:w-32 sm:h-32 drop-shadow-xl"
+            width={128}
+            height={128}
+          />
         </div>
       </div>
 
