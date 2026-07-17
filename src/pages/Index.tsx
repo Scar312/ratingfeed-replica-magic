@@ -27,8 +27,33 @@ const steps = [
   "We'll Review Your Submission And Email You Within 24hrs",
 ];
 
+type LoadStep = "idle" | "loading" | "generating";
+
 const Index = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [loadStep, setLoadStep] = useState<LoadStep>("idle");
+  const [codeProgress, setCodeProgress] = useState("");
+
+  const handleGetCoupon = () => {
+    setLoadStep("loading");
+    setCodeProgress("");
+    setTimeout(() => {
+      setLoadStep("generating");
+      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      const target = 8;
+      let i = 0;
+      const interval = setInterval(() => {
+        i++;
+        setCodeProgress((prev) => prev + chars[Math.floor(Math.random() * chars.length)]);
+        if (i >= target - 2) {
+          clearInterval(interval);
+          setTimeout(() => {
+            window.location.href = APPLY_URL;
+          }, 700);
+        }
+      }, 250);
+    }, 1400);
+  };
 
   useEffect(() => {
     document.title = "Claim Your Uber Eats Reward";
