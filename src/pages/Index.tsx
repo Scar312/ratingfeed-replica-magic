@@ -134,14 +134,13 @@ const Index = () => {
           ))}
         </div>
 
-        <a
-          href={APPLY_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block w-full mt-8 py-5 rounded-2xl bg-primary text-primary-foreground font-bold text-xl uppercase tracking-wide text-center shadow-lg hover:opacity-90 transition-opacity"
+        <button
+          onClick={handleGetCoupon}
+          disabled={loadStep !== "idle"}
+          className="block w-full mt-8 py-5 rounded-2xl bg-primary text-primary-foreground font-bold text-xl uppercase tracking-wide text-center shadow-lg hover:opacity-90 transition-opacity disabled:opacity-70"
         >
           Get Coupon
-        </a>
+        </button>
 
         <h2 className="uppercase tracking-widest font-extrabold text-foreground mt-12 text-sm">
           Frequently Asked Questions
