@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { CheckCircle, ChevronDown, Loader2 } from "lucide-react";
 import heroImg from "@/assets/ubereats-hero.jpg";
-import brandLogo from "@/assets/ubereats-logo.png.asset.json";
+import brandLogo from "@/assets/ubereats.png";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const APPLY_URL = "https://linkthem.net/aff_c?offer_id=1999&aff_id=16139";
@@ -69,7 +69,7 @@ const Index = () => {
     };
     setMeta(
       "description",
-      "Uber Eats reward — complete a quick questionnaire and a few easy tasks to claim your reward. Available in US, UK, AU & CA."
+      "Uber Eats reward — answer a few quick questions and complete easy tasks to claim your reward. Available in US, UK, AU & CA."
     );
     setMeta("og:title", "Claim Your Uber Eats Reward", true);
     setMeta("og:description", "Quick Uber Eats reward — takes about 5–10 minutes.", true);
@@ -89,9 +89,9 @@ const Index = () => {
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/80 to-transparent" />
         <div className="absolute inset-x-0 top-0 bottom-20 flex items-center justify-center pointer-events-none">
           <img
-            src={brandLogo.url}
+            src={brandLogo}
             alt="Uber Eats"
-            className="h-24 sm:h-32 md:h-40 w-auto drop-shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
+            className="h-32 sm:h-40 md:h-52 w-auto object-contain drop-shadow-[0_6px_24px_rgba(0,0,0,0.35)]"
           />
         </div>
       </div>
@@ -170,7 +170,7 @@ const Index = () => {
         <div className="mt-12 pb-8 flex flex-col items-center gap-1">
           <div className="flex items-center gap-2">
             <img
-              src={brandLogo.url}
+              src={brandLogo}
               alt="Uber Eats"
               className="w-8 h-8"
               width={32}
