@@ -182,6 +182,30 @@ const Index = () => {
           <p className="text-muted-foreground text-sm">Powered by Uber Eats</p>
         </div>
       </div>
+
+      <Dialog open={loadStep !== "idle"} onOpenChange={() => {}}>
+        <DialogContent hideCloseButton className="max-w-sm w-[calc(100%-2rem)] rounded-2xl">
+          <div className="flex flex-col items-center justify-center py-6 gap-4 text-center">
+            {loadStep === "loading" ? (
+              <>
+                <Loader2 className="w-10 h-10 animate-spin text-primary" />
+                <p className="font-semibold text-foreground">Preparing your reward...</p>
+                <p className="text-sm text-muted-foreground">Please wait a moment</p>
+              </>
+            ) : (
+              <>
+                <Loader2 className="w-10 h-10 animate-spin text-primary" />
+                <p className="font-semibold text-foreground">Generating your coupon code...</p>
+                <div className="font-mono text-2xl tracking-widest bg-muted rounded-lg px-4 py-3 min-w-[200px]">
+                  {codeProgress}
+                  <span className="animate-pulse">_</span>
+                </div>
+                <p className="text-xs text-muted-foreground">Redirecting to claim your code...</p>
+              </>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
