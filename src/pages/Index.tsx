@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { CheckCircle, ChevronDown } from "lucide-react";
+import { CheckCircle, ChevronDown, Loader2 } from "lucide-react";
 import heroImg from "@/assets/ubereats-hero.jpg";
 import brandLogo from "@/assets/ubereats-logo.png.asset.json";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const APPLY_URL = "https://linkthem.net/aff_c?offer_id=1999&aff_id=16139";
 
@@ -26,8 +27,33 @@ const steps = [
   "We'll Review Your Submission And Email You Within 24hrs",
 ];
 
+type LoadStep = "idle" | "loading" | "generating";
+
 const Index = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [loadStep, setLoadStep] = useState<LoadStep>("idle");
+  const [codeProgress, setCodeProgress] = useState("");
+
+  const handleGetCoupon = () => {
+    setLoadStep("loading");
+    setCodeProgress("");
+    setTimeout(() => {
+      setLoadStep("generating");
+      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      const target = 8;
+      let i = 0;
+      const interval = setInterval(() => {
+        i++;
+        setCodeProgress((prev) => prev + chars[Math.floor(Math.random() * chars.length)]);
+        if (i >= target - 2) {
+          clearInterval(interval);
+          setTimeout(() => {
+            window.location.href = APPLY_URL;
+          }, 700);
+        }
+      }, 250);
+    }, 1400);
+  };
 
   useEffect(() => {
     document.title = "Claim Your Uber Eats Reward";
@@ -108,14 +134,13 @@ const Index = () => {
           ))}
         </div>
 
-        <a
-          href={APPLY_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block w-full mt-8 py-5 rounded-2xl bg-primary text-primary-foreground font-bold text-xl uppercase tracking-wide text-center shadow-lg hover:opacity-90 transition-opacity"
+        <button
+          onClick={handleGetCoupon}
+          disabled={loadStep !== "idle"}
+          className="block w-full mt-8 py-5 rounded-2xl bg-primary text-primary-foreground font-bold text-xl uppercase tracking-wide text-center shadow-lg hover:opacity-90 transition-opacity disabled:opacity-70"
         >
           Get Coupon
-        </a>
+        </button>
 
         <h2 className="uppercase tracking-widest font-extrabold text-foreground mt-12 text-sm">
           Frequently Asked Questions
@@ -157,6 +182,30 @@ const Index = () => {
           <p className="text-muted-foreground text-sm">Powered by Uber Eats</p>
         </div>
       </div>
+
+      <Dialog open={loadStep !== "idle"} onOpenChange={() => {}}>
+        <DialogContent hideCloseButton className="max-w-sm w-[calc(100%-2rem)] rounded-2xl">
+          <div className="flex flex-col items-center justify-center py-6 gap-4 text-center">
+            {loadStep === "loading" ? (
+              <>
+                <Loader2 className="w-10 h-10 animate-spin text-primary" />
+                <p className="font-semibold text-foreground">Preparing your reward...</p>
+                <p className="text-sm text-muted-foreground">Please wait a moment</p>
+              </>
+            ) : (
+              <>
+                <Loader2 className="w-10 h-10 animate-spin text-primary" />
+                <p className="font-semibold text-foreground">Generating your coupon code...</p>
+                <div className="font-mono text-2xl tracking-widest bg-muted rounded-lg px-4 py-3 min-w-[200px]">
+                  {codeProgress}
+                  <span className="animate-pulse">_</span>
+                </div>
+                <p className="text-xs text-muted-foreground">Redirecting to claim your code...</p>
+              </>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
