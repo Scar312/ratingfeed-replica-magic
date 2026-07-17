@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { CheckCircle, ChevronDown, Loader2 } from "lucide-react";
 import heroImg from "@/assets/ubereats-hero.jpg";
+import brandLogo from "@/assets/ubereats-logo.png.asset.json";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import brandLogo from "@/assets/ubereats-logo.png.asset.json";
 
