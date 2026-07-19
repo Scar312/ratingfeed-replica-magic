@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { CheckCircle, ChevronDown, Loader2 } from "lucide-react";
 import heroImg from "@/assets/ubereats-hero.jpg";
-import brandLogo from "@/assets/ubereats.png";
+import brandLogoAsset from "@/assets/doordash-logo.webp.asset.json";
+const brandLogo = brandLogoAsset.url;
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const APPLY_URL = "https://linkthem.net/aff_c?offer_id=1999&aff_id=16139";
