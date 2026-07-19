@@ -4,7 +4,7 @@ import heroImg from "@/assets/ubereats-hero.jpg";
 import brandLogo from "@/assets/doordash.png";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
-const APPLY_URL = "https://linkthem.net/aff_c?offer_id=1999&aff_id=16139";
+const APPLY_URL = "https://giftclick.org/aff_c?offer_id=1164&aff_id=16139";
 
 const faqs = [
   {
