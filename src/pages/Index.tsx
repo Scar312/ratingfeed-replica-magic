@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CheckCircle, ChevronDown, Loader2 } from "lucide-react";
-import heroImg from "@/assets/ubereats-hero.jpg";
+import heroImg from "@/assets/doordash-hero.jpg";
 import brandLogoAsset from "@/assets/doordash-logo.webp.asset.json";
 const brandLogo = brandLogoAsset.url;
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -10,7 +10,7 @@ const APPLY_URL = "https://linkthem.net/aff_c?offer_id=1999&aff_id=16139";
 const faqs = [
   {
     q: "Do I need to provide bank details?",
-    a: "No, you do not need to provide any bank details to claim your Uber Eats reward.",
+    a: "No, you do not need to provide any bank details to claim your DoorDash reward.",
   },
   {
     q: "How long do the deals take?",
@@ -57,7 +57,7 @@ const Index = () => {
   };
 
   useEffect(() => {
-    document.title = "Claim Your Uber Eats Reward";
+    document.title = "Claim Your DoorDash Reward";
     const setMeta = (name: string, content: string, prop = false) => {
       const attr = prop ? "property" : "name";
       let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null;
@@ -70,10 +70,10 @@ const Index = () => {
     };
     setMeta(
       "description",
-      "Uber Eats reward — answer a few quick questions and complete easy tasks to claim your reward. Available in US, UK, AU & CA."
+      "DoorDash reward — answer a few quick questions and complete easy tasks to claim your reward. Available in US, UK, AU & CA."
     );
-    setMeta("og:title", "Claim Your Uber Eats Reward", true);
-    setMeta("og:description", "Quick Uber Eats reward — takes about 5–10 minutes.", true);
+    setMeta("og:title", "Claim Your DoorDash Reward", true);
+    setMeta("og:description", "Quick DoorDash reward — takes about 5–10 minutes.", true);
   }, []);
 
   return (
@@ -81,7 +81,7 @@ const Index = () => {
       <div className="relative w-full h-64 sm:h-80 md:h-96">
         <img
           src={heroImg}
-          alt="Uber Eats delivery food spread"
+          alt="DoorDash delivery food spread"
           className="w-full h-full object-cover"
           width={1280}
           height={640}
@@ -91,7 +91,7 @@ const Index = () => {
         <div className="absolute inset-x-0 top-0 bottom-20 flex items-center justify-center pointer-events-none">
           <img
             src={brandLogo}
-            alt="Uber Eats"
+            alt="DoorDash"
             className="h-32 sm:h-40 md:h-52 w-auto object-contain drop-shadow-[0_6px_24px_rgba(0,0,0,0.35)]"
           />
         </div>
@@ -99,7 +99,7 @@ const Index = () => {
 
       <div className="max-w-lg mx-auto px-4 sm:px-5 -mt-8 sm:-mt-4 pb-8 text-center relative z-10">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground leading-tight">
-          Claim Your Uber Eats Reward
+          Claim Your DoorDash Reward
         </h1>
         <p className="text-muted-foreground mt-2 text-sm sm:text-base">
           Available in US, UK, AU &amp; CA
@@ -172,15 +172,15 @@ const Index = () => {
           <div className="flex items-center gap-2">
             <img
               src={brandLogo}
-              alt="Uber Eats"
+              alt="DoorDash"
               className="w-8 h-8"
               width={32}
               height={32}
               loading="lazy"
             />
-            <span className="font-bold text-foreground">Uber Eats</span>
+            <span className="font-bold text-foreground">DoorDash</span>
           </div>
-          <p className="text-muted-foreground text-sm">Powered by Uber Eats</p>
+          <p className="text-muted-foreground text-sm">Powered by DoorDash</p>
         </div>
       </div>
 
