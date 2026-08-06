@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CheckCircle, ChevronDown, Loader2 } from "lucide-react";
-import heroImg from "@/assets/ubereats-hero.jpg";
+import heroImg from "@/assets/cashapp-hero.jpg";
 import brandLogo from "@/assets/cashapp-logo.webp";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
@@ -139,7 +139,7 @@ const Index = () => {
           disabled={loadStep !== "idle"}
           className="block w-full mt-8 py-5 rounded-2xl bg-primary text-primary-foreground font-bold text-xl uppercase tracking-wide text-center shadow-lg hover:opacity-90 transition-opacity disabled:opacity-70"
         >
-          Get Coupon
+          Apply Now
         </button>
 
         <h2 className="uppercase tracking-widest font-extrabold text-foreground mt-12 text-sm">
