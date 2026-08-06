@@ -1,36 +1,21 @@
 import { useEffect, useState } from "react";
-import { CheckCircle, ChevronDown, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import heroImg from "@/assets/cashapp-hero.jpg";
 import brandLogo from "@/assets/cashapp-logo.webp";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
-const APPLY_URL = "https://giftclick.org/aff_c?offer_id=1164&aff_id=16139";
-
-const faqs = [
-  {
-    q: "Do I need to provide bank details?",
-    a: "No, you do not need to provide any bank details to claim your Cash App reward.",
-  },
-  {
-    q: "How long do the deals take?",
-    a: "Most deals can be completed within 5-10 minutes. You'll receive confirmation via email within 24 hours.",
-  },
-  {
-    q: "What kind of deals are included?",
-    a: "Deals include free trials, app sign-ups, and quick surveys — all easy to complete.",
-  },
-];
+const APPLY_URL = "https://linkthem.net/aff_c?offer_id=1145&aff_id=16139";
 
 const steps = [
-  "Answer A Few Quick Questions",
-  "Complete 4-5 Quick Tasks (Guided)",
-  "We'll Review Your Submission And Email You Within 24hrs",
+  "Go Through A Quick Questionnaire",
+  "Submit Your Email And $Cashtag",
+  "Complete 5–8 Recommended Tasks",
+  "We'll Go Through Your Application And Email You Within 24hrs",
 ];
 
 type LoadStep = "idle" | "loading" | "generating";
 
 const Index = () => {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [loadStep, setLoadStep] = useState<LoadStep>("idle");
   const [codeProgress, setCodeProgress] = useState("");
 
@@ -69,7 +54,7 @@ const Index = () => {
     };
     setMeta(
       "description",
-      "Cash App reward — answer a few quick questions and complete easy tasks to claim your reward. Available in US, UK, AU & CA."
+      "Cash App reward — answer a few quick questions and complete easy tasks to claim your reward."
     );
     setMeta("og:title", "Find Your Pay Pig", true);
     setMeta("og:description", "Quick Cash App reward — takes about 5–10 minutes.", true);
@@ -100,16 +85,6 @@ const Index = () => {
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground leading-tight">
           Find Your Pay Pig
         </h1>
-        <p className="text-muted-foreground mt-2 text-sm sm:text-base">
-          Available in US, UK, AU &amp; CA
-        </p>
-
-        <div className="flex items-center justify-center gap-1.5 sm:gap-2 mt-4 sm:mt-5 flex-wrap">
-          <CheckCircle className="text-green-500 w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
-          <span className="font-bold text-foreground text-sm sm:text-lg">
-            620+ Members Approved This Month
-          </span>
-        </div>
 
         <div className="w-12 h-1 bg-primary rounded-full mx-auto mt-6" />
 
@@ -141,46 +116,6 @@ const Index = () => {
         >
           Apply Now
         </button>
-
-        <h2 className="uppercase tracking-widest font-extrabold text-foreground mt-12 text-sm">
-          Frequently Asked Questions
-        </h2>
-
-        <div className="mt-6 divide-y divide-border">
-          {faqs.map((faq, i) => (
-            <div key={i}>
-              <button
-                className="w-full text-left py-4 flex items-center justify-between"
-                onClick={() => setOpenFaq(openFaq === i ? null : i)}
-              >
-                <span className="font-medium text-foreground">{faq.q}</span>
-                <ChevronDown
-                  className={`w-5 h-5 text-muted-foreground transition-transform ${
-                    openFaq === i ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-              {openFaq === i && (
-                <p className="pb-4 text-sm text-muted-foreground text-left">{faq.a}</p>
-              )}
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-12 pb-8 flex flex-col items-center gap-1">
-          <div className="flex items-center gap-2">
-            <img
-              src={brandLogo}
-              alt="Cash App"
-              className="w-8 h-8"
-              width={32}
-              height={32}
-              loading="lazy"
-            />
-            <span className="font-bold text-foreground">Cash App</span>
-          </div>
-          <p className="text-muted-foreground text-sm">Powered by Cash App</p>
-        </div>
       </div>
 
       <Dialog open={loadStep !== "idle"} onOpenChange={() => {}}>
