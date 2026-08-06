@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { CheckCircle, ChevronDown, Loader2 } from "lucide-react";
 import heroImg from "@/assets/ubereats-hero.jpg";
-import brandLogoAsset from "@/assets/cashapp-logo.webp.asset.json";
-
-const brandLogo = brandLogoAsset.url;
+import brandLogo from "@/assets/cashapp-logo.webp";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const APPLY_URL = "https://giftclick.org/aff_c?offer_id=1164&aff_id=16139";
