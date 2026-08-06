@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { CheckCircle, ChevronDown, Loader2 } from "lucide-react";
 import heroImg from "@/assets/ubereats-hero.jpg";
-import brandLogo from "@/assets/doordash.png";
+import brandLogoAsset from "@/assets/cashapp-logo.webp.asset.json";
+
+const brandLogo = brandLogoAsset.url;
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const APPLY_URL = "https://giftclick.org/aff_c?offer_id=1164&aff_id=16139";
@@ -80,7 +82,7 @@ const Index = () => {
       <div className="relative w-full h-64 sm:h-80 md:h-96">
         <img
           src={heroImg}
-          alt="Cash App delivery food spread"
+          alt="Cash App rewards background"
           className="w-full h-full object-cover"
           width={1280}
           height={640}
